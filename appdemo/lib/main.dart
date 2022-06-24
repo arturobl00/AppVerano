@@ -25,7 +25,7 @@ class Yessenia extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       //home: const MyHomePage(title: 'Mi primer App flutter'),
-      home: const Kevin(),
+      home: const Tarea(),
     );
   }
 }
@@ -169,6 +169,52 @@ class _KevinState extends State<Kevin> {
           Text("MiValor es: " '$miValor')
         ],
       )),
+    );
+  }
+}
+
+class Tarea extends StatefulWidget {
+  const Tarea({Key? key}) : super(key: key);
+
+  @override
+  State<Tarea> createState() => _TareaState();
+}
+
+class _TareaState extends State<Tarea> {
+  int valor = 0;
+
+  void ejemplo1() {
+    setState(() {
+      valor++;
+    });
+  }
+
+  void ejemplo2() {
+    setState(() {
+      valor--;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Hola a todos"),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text("hola yesenia"),
+            const Text("mi prime reto"),
+            ElevatedButton(
+                onPressed: () => ejemplo1(), child: const Text("incremento")),
+            ElevatedButton(
+                onPressed: () => ejemplo2(), child: const Text("decremento")),
+            Text("Resultado: " '$valor'),
+          ],
+        ),
+      ),
     );
   }
 }
