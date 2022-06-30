@@ -170,15 +170,90 @@ class MyCustomFormState extends State<MyCustomForm> {
   }
 }
 
-class Calculadora extends StatelessWidget {
+class Calculadora extends StatefulWidget {
   const Calculadora({Key? key}) : super(key: key);
+
+  @override
+  State<Calculadora> createState() => _CalculadoraState();
+}
+
+class _CalculadoraState extends State<Calculadora> {
+  final formKey1 = GlobalKey<FormState>();
+  final data1Controller = TextEditingController();
+  final data2Controller = TextEditingController();
+  double suma = 0;
+
+  @override
+  void dispose() {
+    // Limpia el controlador cuando el Widget se descarte
+    data1Controller.dispose();
+    data2Controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("Calculadora Simple")),
-      body: Center(child: Text("Hola")),
+      body: Center(
+          child: Form(
+              key: formKey1,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: TextFormField(
+                      keyboardType: TextInputType.number,
+                      controller: data1Controller,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Dato1',
+                      ),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Please enter some text';
+                        }
+                      },
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: TextFormField(
+                      keyboardType: TextInputType.number,
+                      controller: data2Controller,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Dato2',
+                      ),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Please enter some text';
+                        }
+                      },
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: ElevatedButton(
+                        onPressed: () {
+                          suma = double.parse(data1Controller.text) +
+                              double.parse(data2Controller.text);
+                          showDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  content: Text(data1Controller.text +
+                                      " + " +
+                                      data2Controller.text +
+                                      " =  $suma"),
+                                );
+                              });
+                        },
+                        child: Text("Sumar")),
+                  )
+                ],
+              ))),
     );
   }
 }
-
