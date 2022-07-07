@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/grocery_store_bloc.dart';
 
 const _backgroundColor = Color(0XFFF6F5F2);
+//Alto del los fondos blanco y negro
 const _carBarHeight = 150.0;
+//Tiempo de transicion en la animación
+const _panelTransition = Duration(milliseconds: 500);
 
 void main() {
   runApp(const MyApp());
@@ -22,42 +26,97 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class GroceryStoreHome extends StatelessWidget {
+class GroceryStoreHome extends StatefulWidget {
   const GroceryStoreHome({Key? key}) : super(key: key);
+
+  @override
+  State<GroceryStoreHome> createState() => _GroceryStoreHomeState();
+}
+
+class _GroceryStoreHomeState extends State<GroceryStoreHome> {
+  //Activador de estados
+  final bloc = GroceryStoreBloc();
+
+  //Validacion de la posicion del dedo al subir y bajar
+  void _onVerticalGesture(DragUpdateDetails details) {
+    // ignore: avoid_print
+    print(details.primaryDelta);
+    if (details.primaryDelta! < -2) {
+      bloc.changeToCart();
+    } else if (details.primaryDelta! > 2) {
+      bloc.changeToNormal();
+    }
+  }
+
+  //Posicion Top cuando el estado es normal o cart panel blanco
+  _getTopForWhitePanel(GroceryState state, Size size) {
+    if (state == GroceryState.normal) {
+      return -_carBarHeight;
+    } else if (state == GroceryState.cart) {
+      return -(size.height - kToolbarHeight - _carBarHeight / 2);
+    }
+  }
+
+  //Posicion Top cuando el estado es normal o cart panel negro
+  _getTopForBlackPanel(GroceryState state, Size size) {
+    if (state == GroceryState.normal) {
+      return size.height - kToolbarHeight - _carBarHeight;
+    } else if (state == GroceryState.cart) {
+      return _carBarHeight / 2;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context)
         .size; //Variable para obtener el tamaño de la pantalla
-    return Scaffold(
-      body: Column(
-        children: [
-          _AppBarGrocery(),
-          Expanded(
-            child: Stack(
+    return AnimatedBuilder(
+        animation: bloc,
+        builder: (context, _) {
+          return Scaffold(
+            backgroundColor: Colors.black,
+            body: Column(
               children: [
-                Positioned(
-                    left: 0,
-                    right: 0,
-                    top: -_carBarHeight,
-                    height: size.height - kToolbarHeight,
-                    child: Container(
-                      color: Colors.white,
-                    )),
-                Positioned(
-                    left: 0,
-                    right: 0,
-                    top: 500,
-                    height: size.height - kToolbarHeight,
-                    child: Container(
-                      color: Colors.red,
-                    )),
+                const _AppBarGrocery(),
+                Expanded(
+                  child: Stack(
+                    children: [
+                      AnimatedPositioned(
+                          duration: _panelTransition,
+                          left: 0,
+                          right: 0,
+                          top: _getTopForWhitePanel(
+                              bloc.groceryState, size), //Cambio de estado
+                          height: size.height - kToolbarHeight,
+                          child: Container(
+                            decoration: const BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(30.0),
+                                  bottomRight: Radius.circular(30.0),
+                                )),
+                          )),
+                      AnimatedPositioned(
+                          duration: _panelTransition,
+                          //     curve: Curves.decelerate,
+                          left: 0,
+                          right: 0,
+                          top: _getTopForBlackPanel(
+                              bloc.groceryState, size), //Cambio de estado
+                          height: size.height,
+                          child: GestureDetector(
+                            onVerticalDragUpdate: _onVerticalGesture,
+                            child: Container(
+                              color: Colors.black,
+                            ),
+                          )),
+                    ],
+                  ),
+                ),
               ],
             ),
-          ),
-        ],
-      ),
-    );
+          );
+        });
   }
 }
 
@@ -68,24 +127,24 @@ class _AppBarGrocery extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: kToolbarHeight,
-      margin: EdgeInsets.only(top: 60.0),
+      margin: const EdgeInsets.only(top: 60.0),
       color: _backgroundColor,
       child: Row(
         children: [
-          BackButton(
+          const BackButton(
             color: Colors.black,
           ),
-          SizedBox(
+          const SizedBox(
             width: 10,
           ),
-          Expanded(
+          const Expanded(
               child: Text(
             "Fruits and vegetables",
             style: TextStyle(
               color: Colors.black,
             ),
           )),
-          IconButton(onPressed: () {}, icon: Icon(Icons.settings)),
+          IconButton(onPressed: () {}, icon: const Icon(Icons.settings)),
         ],
       ),
     );
