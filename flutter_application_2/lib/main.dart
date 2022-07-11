@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/grocery_provider.dart';
 import 'package:flutter_application_2/grocery_store_bloc.dart';
+import 'grocery_store_list.dart';
 
 const _backgroundColor = Color(0XFFF6F5F2);
 //Alto del los fondos blanco y negro
@@ -70,53 +72,57 @@ class _GroceryStoreHomeState extends State<GroceryStoreHome> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context)
         .size; //Variable para obtener el tamaño de la pantalla
-    return AnimatedBuilder(
-        animation: bloc,
-        builder: (context, _) {
-          return Scaffold(
-            backgroundColor: Colors.black,
-            body: Column(
-              children: [
-                const _AppBarGrocery(),
-                Expanded(
-                  child: Stack(
-                    children: [
-                      AnimatedPositioned(
-                          duration: _panelTransition,
-                          left: 0,
-                          right: 0,
-                          top: _getTopForWhitePanel(
-                              bloc.groceryState, size), //Cambio de estado
-                          height: size.height - kToolbarHeight,
-                          child: Container(
-                            decoration: const BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.only(
-                                  bottomLeft: Radius.circular(30.0),
-                                  bottomRight: Radius.circular(30.0),
-                                )),
-                          )),
-                      AnimatedPositioned(
-                          duration: _panelTransition,
-                          //     curve: Curves.decelerate,
-                          left: 0,
-                          right: 0,
-                          top: _getTopForBlackPanel(
-                              bloc.groceryState, size), //Cambio de estado
-                          height: size.height,
-                          child: GestureDetector(
-                            onVerticalDragUpdate: _onVerticalGesture,
+    return GroceryProvider(
+      bloc: bloc,
+      child: AnimatedBuilder(
+          animation: bloc,
+          builder: (context, _) {
+            return Scaffold(
+              backgroundColor: Colors.black,
+              body: Column(
+                children: [
+                  const _AppBarGrocery(),
+                  Expanded(
+                    child: Stack(
+                      children: [
+                        AnimatedPositioned(
+                            duration: _panelTransition,
+                            left: 0,
+                            right: 0,
+                            top: _getTopForWhitePanel(
+                                bloc.groceryState, size), //Cambio de estado
+                            height: size.height - kToolbarHeight,
                             child: Container(
-                              color: Colors.black,
-                            ),
-                          )),
-                    ],
+                              decoration: const BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(30.0),
+                                    bottomRight: Radius.circular(30.0),
+                                  )),
+                              child: const GroceryStoreList(),
+                            )),
+                        AnimatedPositioned(
+                            duration: _panelTransition,
+                            //     curve: Curves.decelerate,
+                            left: 0,
+                            right: 0,
+                            top: _getTopForBlackPanel(
+                                bloc.groceryState, size), //Cambio de estado
+                            height: size.height,
+                            child: GestureDetector(
+                              onVerticalDragUpdate: _onVerticalGesture,
+                              child: Container(
+                                color: Colors.black,
+                              ),
+                            )),
+                      ],
+                    ),
                   ),
-                ),
-              ],
-            ),
-          );
-        });
+                ],
+              ),
+            );
+          }),
+    );
   }
 }
 
