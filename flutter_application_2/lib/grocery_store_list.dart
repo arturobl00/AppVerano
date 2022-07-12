@@ -1,13 +1,88 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/grocery_provider.dart';
 
+import 'grocery_store_details.dart';
+
 class GroceryStoreList extends StatelessWidget {
   const GroceryStoreList({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final bloc = GroceryProvider.of(context)?.bloc;
-    return ListView.builder(
+    return GridView.builder(
+        padding: const EdgeInsets.only(top: 150.0),
+        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+            maxCrossAxisExtent: 200,
+            mainAxisExtent: 350,
+            childAspectRatio: 2,
+            crossAxisSpacing: 2,
+            mainAxisSpacing: 2),
+        itemCount: bloc!.catalog.length,
+        itemBuilder: (context, index) {
+          final product = bloc.catalog[index];
+          return Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(
+                    PageRouteBuilder(pageBuilder: (context, animation, _) {
+                  return FadeTransition(
+                      opacity: animation,
+                      child: GroceryStoreDetails(
+                        product: product,
+                      ));
+                }));
+              },
+              child: Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(60.0),
+                  ),
+                  elevation: 10.0,
+                  color: Colors.white,
+                  child: Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            product.image,
+                            fit: BoxFit.cover,
+                            height: 200,
+                            width: 120,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Text(
+                              '\$${product.price}',
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                  fontSize: 20.0),
+                            ),
+                          ),
+                          Text(
+                            product.name,
+                            style: const TextStyle(
+                                fontWeight: FontWeight.w500,
+                                color: Colors.black,
+                                fontSize: 14.0),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Text(
+                              product.weight,
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.grey,
+                                  fontSize: 14.0),
+                            ),
+                          )
+                        ]),
+                  )),
+            ),
+          );
+        });
+    /*return ListView.builder(
         padding: const EdgeInsets.only(top: 150.0),
         itemCount: bloc!.catalog.length,
         itemBuilder: (context, index) {
@@ -32,27 +107,27 @@ class GroceryStoreList extends StatelessWidget {
                       ),
                       Text(
                         '\$${product.price}',
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Colors.black,
                             fontSize: 20.0),
                       ),
                       Text(
                         product.name,
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontWeight: FontWeight.w500,
                             color: Colors.black,
                             fontSize: 14.0),
                       ),
                       Text(
                         product.weight,
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontWeight: FontWeight.w500,
                             color: Colors.grey,
                             fontSize: 14.0),
                       )
                     ]),
               ));
-        });
+        });*/
   }
 }

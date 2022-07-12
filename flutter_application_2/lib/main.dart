@@ -86,21 +86,21 @@ class _GroceryStoreHomeState extends State<GroceryStoreHome> {
                     child: Stack(
                       children: [
                         AnimatedPositioned(
-                            duration: _panelTransition,
-                            left: 0,
-                            right: 0,
-                            top: _getTopForWhitePanel(
-                                bloc.groceryState, size), //Cambio de estado
-                            height: size.height - kToolbarHeight,
-                            child: Container(
+                          duration: _panelTransition,
+                          left: 0,
+                          right: 0,
+                          top: _getTopForWhitePanel(
+                              bloc.groceryState, size), //Cambio de estado
+                          height: size.height - kToolbarHeight,
+                          child: Container(
                               decoration: const BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.only(
                                     bottomLeft: Radius.circular(30.0),
                                     bottomRight: Radius.circular(30.0),
                                   )),
-                              child: const GroceryStoreList(),
-                            )),
+                              child: const GroceryStoreList()),
+                        ),
                         AnimatedPositioned(
                             duration: _panelTransition,
                             //     curve: Curves.decelerate,
@@ -150,7 +150,11 @@ class _AppBarGrocery extends StatelessWidget {
               color: Colors.black,
             ),
           )),
-          IconButton(onPressed: () {}, icon: const Icon(Icons.settings)),
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.settings),
+            color: Colors.black,
+          ),
         ],
       ),
     );
