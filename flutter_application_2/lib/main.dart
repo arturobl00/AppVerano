@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_application_2/grocery_provider.dart';
 import 'package:flutter_application_2/grocery_store_bloc.dart';
 import 'grocery_store_list.dart';
@@ -96,8 +97,8 @@ class _GroceryStoreHomeState extends State<GroceryStoreHome> {
                               decoration: const BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(30.0),
-                                    bottomRight: Radius.circular(30.0),
+                                    bottomLeft: Radius.circular(8),
+                                    bottomRight: Radius.circular(8),
                                   )),
                               child: const GroceryStoreList()),
                         ),
@@ -113,6 +114,53 @@ class _GroceryStoreHomeState extends State<GroceryStoreHome> {
                               onVerticalDragUpdate: _onVerticalGesture,
                               child: Container(
                                 color: Colors.black,
+                                child: Column(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          top: 20.0, left: 10.0),
+                                      child: Row(
+                                        children: [
+                                          // ignore: prefer_const_constructors
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                right: 8.0),
+                                            child: const Text(
+                                              "Cart",
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 20.0),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            child: SingleChildScrollView(
+                                              scrollDirection: Axis.horizontal,
+                                              child: Row(
+                                                  children: List.generate(
+                                                      bloc.cart.length,
+                                                      (index) => CircleAvatar(
+                                                            backgroundImage:
+                                                                AssetImage(bloc
+                                                                    .cart[index]
+                                                                    .product
+                                                                    .image),
+                                                          ))),
+                                            ),
+                                          ),
+                                          const Padding(
+                                            padding:
+                                                EdgeInsets.only(left: 10.0),
+                                            child: CircleAvatar(
+                                              backgroundColor: Colors.red,
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                    Spacer(),
+                                    Placeholder(),
+                                  ],
+                                ),
                               ),
                             )),
                       ],

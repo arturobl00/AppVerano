@@ -33,7 +33,7 @@ class _HomePageState extends State<HomePage> {
   late final String ano = now.year.toString();
   late final String eano = ano[2] + ano[3];
   late final String data =
-      "63-Omar Gomez Carrasco-ACCESO PERMITIDO Fecha: $dia.0$mes.$eano";
+      "13-Irma María de Lourdes Arias Bravo-ACCESO PERMITIDO Fecha: $dia.0$mes.$eano";
 
   @override
   Widget build(BuildContext context) {

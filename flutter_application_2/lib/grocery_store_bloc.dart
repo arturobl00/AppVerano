@@ -10,6 +10,7 @@ enum GroceryState {
 class GroceryStoreBloc with ChangeNotifier {
   GroceryState groceryState = GroceryState.normal;
   List<GroceryProduct> catalog = List.unmodifiable(grpceryProducts);
+  List<GroceryProductItem> cart = [];
 
   void changeToNormal() {
     groceryState = GroceryState.normal;
@@ -20,4 +21,18 @@ class GroceryStoreBloc with ChangeNotifier {
     groceryState = GroceryState.cart;
     notifyListeners();
   }
+
+  void addProduct(GroceryProduct product) {
+    cart.add(GroceryProductItem(product: product));
+    notifyListeners();
+  }
+}
+
+class GroceryProductItem {
+  GroceryProductItem({this.quantity = 1, required this.product});
+  int quantity;
+  final GroceryProduct product;
+
+  void add() {}
+  void subtract() {}
 }

@@ -29,8 +29,10 @@ class GroceryStoreList extends StatelessWidget {
                   return FadeTransition(
                       opacity: animation,
                       child: GroceryStoreDetails(
-                        product: product,
-                      ));
+                          product: product,
+                          onProductAdded: () {
+                            bloc.addProduct(product);
+                          }));
                 }));
               },
               child: Card(
@@ -44,11 +46,16 @@ class GroceryStoreList extends StatelessWidget {
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Image.asset(
-                            product.image,
-                            fit: BoxFit.cover,
-                            height: 200,
-                            width: 120,
+                          Expanded(
+                            child: Hero(
+                              tag: 'list_${product.name}',
+                              child: Image.asset(
+                                product.image,
+                                fit: BoxFit.cover,
+                                height: 200,
+                                width: 120,
+                              ),
+                            ),
                           ),
                           Padding(
                             padding: const EdgeInsets.all(10.0),
