@@ -134,14 +134,16 @@ class _GroceryStoreHomeState extends State<GroceryStoreHome> {
                                           ),
                                           Expanded(
                                             child: SingleChildScrollView(
-                                              scrollDirection: Axis.horizontal,
+                                              scrollDirection:
+                                                  Axis.horizontal,
                                               child: Row(
                                                   children: List.generate(
                                                       bloc.cart.length,
                                                       (index) => CircleAvatar(
                                                             backgroundImage:
                                                                 AssetImage(bloc
-                                                                    .cart[index]
+                                                                    .cart[
+                                                                        index]
                                                                     .product
                                                                     .image),
                                                           ))),

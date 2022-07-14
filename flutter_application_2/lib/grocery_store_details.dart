@@ -19,7 +19,7 @@ class GroceryStoreDetails extends StatelessWidget {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          leading: BackButton(color: Colors.black),
+          leading: const BackButton(color: Colors.black),
           backgroundColor: Colors.white,
         ),
         body: ListView(children: [
@@ -28,15 +28,12 @@ class GroceryStoreDetails extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Hero(
-                    tag: "Detalles",
-                    child: Center(
-                      child: Image.asset(
-                        product.image,
-                        fit: BoxFit.cover,
-                        height: 350,
-                        width: 300,
-                      ),
+                  Center(
+                    child: Image.asset(
+                      product.image,
+                      fit: BoxFit.cover,
+                      height: 350,
+                      width: 300,
                     ),
                   ),
                   Padding(
