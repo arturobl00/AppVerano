@@ -65,4 +65,95 @@ const grpceryProducts = <GroceryProduct>[
           'Citrullus lanatus, comúnmente llamada sandía, acendría, sindria, patilla, es una especie de la familia Cucurbitaceae. Es originaria de África con una gran presencia y difusión en todo el mundo.',
       image: 'assets/grocery_store/sandia.jpg',
       weight: '1000 g'),
+  GroceryProduct(
+      price: 20.55,
+      name: 'Cebolla Blanca',
+      description:
+          'Citrullus lanatus, comúnmente llamada sandía, acendría, sindria, patilla, es una especie de la familia Cucurbitaceae. Es originaria de África con una gran presencia y difusión en todo el mundo.',
+      image: 'assets/grocery_store/cebollablanca.jpg',
+      weight: '1000 g'),
+  GroceryProduct(
+      price: 18.56,
+      name: 'Cebolla Morada',
+      description:
+          'Citrullus lanatus, comúnmente llamada sandía, acendría, sindria, patilla, es una especie de la familia Cucurbitaceae. Es originaria de África con una gran presencia y difusión en todo el mundo.',
+      image: 'assets/grocery_store/cebollamorada.jpg',
+      weight: '1000 g'),
+  GroceryProduct(
+      price: 12.55,
+      name: 'Ejote',
+      description:
+          'Citrullus lanatus, comúnmente llamada sandía, acendría, sindria, patilla, es una especie de la familia Cucurbitaceae. Es originaria de África con una gran presencia y difusión en todo el mundo.',
+      image: 'assets/grocery_store/ejote.jpg',
+      weight: '1000 g'),
+  GroceryProduct(
+      price: 90.14,
+      name: 'Fresa',
+      description:
+          'Citrullus lanatus, comúnmente llamada sandía, acendría, sindria, patilla, es una especie de la familia Cucurbitaceae. Es originaria de África con una gran presencia y difusión en todo el mundo.',
+      image: 'assets/grocery_store/fresa.jpg',
+      weight: '1000 g'),
+  GroceryProduct(
+      price: 12.41,
+      name: 'Jicama',
+      description:
+          'Citrullus lanatus, comúnmente llamada sandía, acendría, sindria, patilla, es una especie de la familia Cucurbitaceae. Es originaria de África con una gran presencia y difusión en todo el mundo.',
+      image: 'assets/grocery_store/jicama.jpg',
+      weight: '1000 g'),
+  GroceryProduct(
+      price: 40.55,
+      name: 'Jitomate',
+      description:
+          'Citrullus lanatus, comúnmente llamada sandía, acendría, sindria, patilla, es una especie de la familia Cucurbitaceae. Es originaria de África con una gran presencia y difusión en todo el mundo.',
+      image: 'assets/grocery_store/Jitomate.jpg',
+      weight: '1000 g'),
+  GroceryProduct(
+      price: 60.12,
+      name: 'Kiwi',
+      description:
+          'Citrullus lanatus, comúnmente llamada sandía, acendría, sindria, patilla, es una especie de la familia Cucurbitaceae. Es originaria de África con una gran presencia y difusión en todo el mundo.',
+      image: 'assets/grocery_store/kiwi.jpg',
+      weight: '1000 g'),
+  GroceryProduct(
+      price: 104.55,
+      name: 'Limón',
+      description:
+          'Citrullus lanatus, comúnmente llamada sandía, acendría, sindria, patilla, es una especie de la familia Cucurbitaceae. Es originaria de África con una gran presencia y difusión en todo el mundo.',
+      image: 'assets/grocery_store/limones.jpg',
+      weight: '1000 g'),
+  GroceryProduct(
+      price: 34.55,
+      name: 'Maracuya',
+      description:
+          'Citrullus lanatus, comúnmente llamada sandía, acendría, sindria, patilla, es una especie de la familia Cucurbitaceae. Es originaria de África con una gran presencia y difusión en todo el mundo.',
+      image: 'assets/grocery_store/maracuya.jpg',
+      weight: '1000 g'),
+  GroceryProduct(
+      price: 30.55,
+      name: 'Papaya',
+      description:
+          'Citrullus lanatus, comúnmente llamada sandía, acendría, sindria, patilla, es una especie de la familia Cucurbitaceae. Es originaria de África con una gran presencia y difusión en todo el mundo.',
+      image: 'assets/grocery_store/papaya.jpg',
+      weight: '1000 g'),
+  GroceryProduct(
+      price: 15.55,
+      name: 'Pepino',
+      description:
+          'Citrullus lanatus, comúnmente llamada sandía, acendría, sindria, patilla, es una especie de la familia Cucurbitaceae. Es originaria de África con una gran presencia y difusión en todo el mundo.',
+      image: 'assets/grocery_store/pepino.jpg',
+      weight: '1000 g'),
+  GroceryProduct(
+      price: 40.55,
+      name: 'Pera',
+      description:
+          'Citrullus lanatus, comúnmente llamada sandía, acendría, sindria, patilla, es una especie de la familia Cucurbitaceae. Es originaria de África con una gran presencia y difusión en todo el mundo.',
+      image: 'assets/grocery_store/pera.jpg',
+      weight: '1000 g'),
+  GroceryProduct(
+      price: 16.55,
+      name: 'Zanahoria',
+      description:
+          'Citrullus lanatus, comúnmente llamada sandía, acendría, sindria, patilla, es una especie de la familia Cucurbitaceae. Es originaria de África con una gran presencia y difusión en todo el mundo.',
+      image: 'assets/grocery_store/zanahoria.jpg',
+      weight: '1000 g'),
 ];

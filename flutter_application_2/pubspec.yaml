@@ -67,6 +67,20 @@ flutter:
     - assets/grocery_store/platano.jpg
     - assets/grocery_store/cereza.png
     - assets/grocery_store/sandia.jpg
+    - assets/grocery_store/cebollablanca.jpg
+    - assets/grocery_store/cebollamorada.jpg
+    - assets/grocery_store/elote.jpg
+    - assets/grocery_store/ejote.jpg
+    - assets/grocery_store/fresa.jpg
+    - assets/grocery_store/jicama.jpg
+    - assets/grocery_store/jitomate.jpg
+    - assets/grocery_store/kiwi.jpg
+    - assets/grocery_store/limones.jpg
+    - assets/grocery_store/maracuya.jpg
+    - assets/grocery_store/papaya.jpg
+    - assets/grocery_store/pepino.jpg
+    - assets/grocery_store/pera.jpg
+    - assets/grocery_store/zanahoria.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/grpcery_product.dart';
 
-class GroceryStoreDetails extends StatelessWidget {
+class GroceryStoreDetails extends StatefulWidget {
   const GroceryStoreDetails(
       {Key? key, required this.product, required this.onProductAdded})
       : super(key: key);
@@ -9,8 +9,19 @@ class GroceryStoreDetails extends StatelessWidget {
   final GroceryProduct product;
   final VoidCallback onProductAdded;
 
+  @override
+  State<GroceryStoreDetails> createState() => _GroceryStoreDetailsState();
+}
+
+class _GroceryStoreDetailsState extends State<GroceryStoreDetails> {
+  String heroTag = '';
   void _addToCart(BuildContext context) {
-    onProductAdded();
+    //Siempre que queremos cambiar el valor a una constante
+    setState(() {
+      heroTag = 'details';
+    });
+
+    widget.onProductAdded();
     Navigator.of(context).pop();
   }
 
@@ -28,17 +39,20 @@ class GroceryStoreDetails extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Center(
-                    child: Image.asset(
-                      product.image,
-                      fit: BoxFit.cover,
-                      height: 350,
-                      width: 300,
+                  Hero(
+                    tag: 'list_${widget.product.name}$heroTag',
+                    child: Center(
+                      child: Image.asset(
+                        widget.product.image,
+                        fit: BoxFit.cover,
+                        height: 350,
+                        width: 300,
+                      ),
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 1.0, left: 10.0),
-                    child: Text(product.name,
+                    child: Text(widget.product.name,
                         textAlign: TextAlign.start,
                         style: const TextStyle(
                             fontWeight: FontWeight.bold,
@@ -47,7 +61,7 @@ class GroceryStoreDetails extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 5.0, left: 10.0),
-                    child: Text(product.weight,
+                    child: Text(widget.product.weight,
                         textAlign: TextAlign.start,
                         style: const TextStyle(
                             fontWeight: FontWeight.bold,
@@ -57,7 +71,7 @@ class GroceryStoreDetails extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(top: 10.0, left: 10.0),
                     child: Text(
-                        '\$${product.price}', //Cambio por que es numero en un string
+                        '\$${widget.product.price}', //Cambio por que es numero en un string
                         textAlign: TextAlign.end,
                         style: const TextStyle(
                             fontWeight: FontWeight.bold,
@@ -78,7 +92,7 @@ class GroceryStoreDetails extends StatelessWidget {
                     padding:
                         EdgeInsets.only(top: 10.0, left: 10.0, right: 10.0),
                     child: Text(
-                      product.description,
+                      widget.product.description,
                       textAlign: TextAlign.justify,
                       style: TextStyle(fontSize: 14.0, color: Colors.black54),
                     ),

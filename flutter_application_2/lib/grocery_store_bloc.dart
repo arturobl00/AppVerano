@@ -23,9 +23,19 @@ class GroceryStoreBloc with ChangeNotifier {
   }
 
   void addProduct(GroceryProduct product) {
+    for (GroceryProductItem item in cart) {
+      if (item.product.name == product.name) {
+        item.increment();
+        notifyListeners();
+        return;
+      }
+    }
     cart.add(GroceryProductItem(product: product));
     notifyListeners();
   }
+
+  int totalCartElements() => cart.fold<int>(
+      0, (previousValue, element) => previousValue + element.quantity);
 }
 
 class GroceryProductItem {
@@ -33,6 +43,12 @@ class GroceryProductItem {
   int quantity;
   final GroceryProduct product;
 
-  void add() {}
-  void subtract() {}
+  //void add() {}
+  //void subtract() {}
+
+  void increment() {
+    quantity++;
+  }
+
+  void decrement() {}
 }

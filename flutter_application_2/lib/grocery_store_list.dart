@@ -24,16 +24,17 @@ class GroceryStoreList extends StatelessWidget {
             padding: const EdgeInsets.all(10.0),
             child: GestureDetector(
               onTap: () {
-                Navigator.of(context).push(
-                    PageRouteBuilder(pageBuilder: (context, animation, _) {
-                  return FadeTransition(
-                      opacity: animation,
-                      child: GroceryStoreDetails(
-                          product: product,
-                          onProductAdded: () {
-                            bloc.addProduct(product);
-                          }));
-                }));
+                Navigator.of(context).push(PageRouteBuilder(
+                    transitionDuration: const Duration(milliseconds: 600),
+                    pageBuilder: (context, animation, _) {
+                      return FadeTransition(
+                          opacity: animation,
+                          child: GroceryStoreDetails(
+                              product: product,
+                              onProductAdded: () {
+                                bloc.addProduct(product);
+                              }));
+                    }));
               },
               child: Card(
                   shape: RoundedRectangleBorder(

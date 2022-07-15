@@ -134,33 +134,73 @@ class _GroceryStoreHomeState extends State<GroceryStoreHome> {
                                           ),
                                           Expanded(
                                             child: SingleChildScrollView(
-                                              scrollDirection:
-                                                  Axis.horizontal,
+                                              scrollDirection: Axis.horizontal,
                                               child: Row(
                                                   children: List.generate(
                                                       bloc.cart.length,
-                                                      (index) => CircleAvatar(
-                                                            backgroundImage:
-                                                                AssetImage(bloc
-                                                                    .cart[
-                                                                        index]
-                                                                    .product
-                                                                    .image),
+                                                      (index) => Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                        .symmetric(
+                                                                    horizontal:
+                                                                        8.0),
+                                                            child: Stack(
+                                                                children: [
+                                                                  Hero(
+                                                                    tag:
+                                                                        'list_${bloc.cart[index].product.name}details',
+                                                                    child:
+                                                                        CircleAvatar(
+                                                                      backgroundImage: AssetImage(bloc
+                                                                          .cart[
+                                                                              index]
+                                                                          .product
+                                                                          .image),
+                                                                    ),
+                                                                  ),
+                                                                  Positioned(
+                                                                    right: 0,
+                                                                    child:
+                                                                        CircleAvatar(
+                                                                      radius:
+                                                                          10,
+                                                                      backgroundColor:
+                                                                          Colors
+                                                                              .red,
+                                                                      child:
+                                                                          Text(
+                                                                        bloc.cart[index]
+                                                                            .quantity
+                                                                            .toString(),
+                                                                        style: const TextStyle(
+                                                                            color:
+                                                                                Colors.white),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ]),
                                                           ))),
                                             ),
                                           ),
-                                          const Padding(
-                                            padding:
-                                                EdgeInsets.only(left: 10.0),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 10.0),
                                             child: CircleAvatar(
                                               backgroundColor: Colors.red,
+                                              child: Text(
+                                                bloc
+                                                    .totalCartElements()
+                                                    .toString(),
+                                                style: TextStyle(
+                                                    color: Colors.white),
+                                              ),
                                             ),
                                           )
                                         ],
                                       ),
                                     ),
-                                    Spacer(),
-                                    Placeholder(),
+                                    //Spacer(),
+                                    //Placeholder(),
                                   ],
                                 ),
                               ),
