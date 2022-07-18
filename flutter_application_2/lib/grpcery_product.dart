@@ -105,7 +105,7 @@ const grpceryProducts = <GroceryProduct>[
       name: 'Jitomate',
       description:
           'Citrullus lanatus, comúnmente llamada sandía, acendría, sindria, patilla, es una especie de la familia Cucurbitaceae. Es originaria de África con una gran presencia y difusión en todo el mundo.',
-      image: 'assets/grocery_store/Jitomate.jpg',
+      image: 'assets/grocery_store/jitomate.jpg',
       weight: '1000 g'),
   GroceryProduct(
       price: 60.12,

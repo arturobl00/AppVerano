@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "351467539073",
+    "project_id": "verano-b07d7",
+    "storage_bucket": "verano-b07d7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:351467539073:android:7daa617bc82f22bc7d9b80",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_3"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "351467539073-c06qv2t3qrci44np1prf86ov8022n9r6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAanEysnBDPArFV7qR4dD10r3lrXccFDeI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "351467539073-c06qv2t3qrci44np1prf86ov8022n9r6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -34,8 +34,18 @@ class GroceryStoreBloc with ChangeNotifier {
     notifyListeners();
   }
 
+  void delProduct(GroceryProductItem item) {
+    cart.remove(item);
+    notifyListeners();
+  }
+
   int totalCartElements() => cart.fold<int>(
       0, (previousValue, element) => previousValue + element.quantity);
+
+  double totalPriceElements() => cart.fold<double>(
+      0.0,
+      (previousValue, element) =>
+          previousValue + (element.quantity * element.product.price));
 }
 
 class GroceryProductItem {
